@@ -1,28 +1,32 @@
 import React from 'react';
 
 import classes from './Navigation.module.css';
-
+import contextStore from '../../store/context-store';
 const Navigation = (props) => {
   return (
-    <nav className={classes.nav}>
+<contextStore.Consumer>
+  {(cnx) => { return (<nav className={classes.nav}>
       <ul>
-        {props.isLoggedIn && (
+        {cnx.x && (
           <li>
             <a href="/">Users</a>
           </li>
         )}
-        {props.isLoggedIn && (
+        {cnx.x && (
           <li>
             <a href="/">Admin</a>
           </li>
         )}
-        {props.isLoggedIn && (
+        {cnx.x && (
           <li>
             <button onClick={props.onLogout}>Logout</button>
           </li>
         )}
       </ul>
-    </nav>
+    </nav>)
+  }}
+  
+  </contextStore.Consumer>
   );
 };
 
